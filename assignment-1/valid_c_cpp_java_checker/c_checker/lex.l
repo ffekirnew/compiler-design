@@ -3,7 +3,7 @@
 %}
 
 %option noyywrap
-KEYWORD_C     int|float|char|double|void|if|else|for|while|return|struct|include
+KEYWORD_C     int|float|char|double|void|if|else|for|while|return|struct|#include
 IDENTIFIER    [a-zA-Z_][a-zA-Z0-9_]*
 NUMBER        [0-9]+(\.[0-9]+)?
 STRING        \"([^\\\"]|\\.)*\"
