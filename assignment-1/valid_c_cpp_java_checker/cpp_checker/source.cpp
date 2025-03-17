@@ -1,11 +1,12 @@
-#include <stdio.h>
+#include <iostream>
 
 int main() {
   /* This is a comment */
   int a = 5;
   double b = 0.6;
-  char *c = "Hello, World!\n";
+  const char *c = "Hello, World!\n";
   // This is a line comment
-  printf("Hello, World!\n");
+  std::cout << "Hello, World!" << std::endl;
   return 0;
 }
+

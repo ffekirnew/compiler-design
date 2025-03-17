@@ -3,7 +3,7 @@
 %}
 
 %option noyywrap
-KEYWORD_C     int|float|char|double|void|if|else|for|while|return|struct|#include
+KEYWORD_CPP   int|float|char|double|void|if|else|for|while|return|struct|#include|class|public|private|protected|namespace|using|new|delete|try|catch|throw|template|typename|const|constexpr|nullptr|this|operator|friend|virtual|override|final|static_cast|dynamic_cast|reinterpret_cast|const_cast
 IDENTIFIER    [a-zA-Z_][a-zA-Z0-9_]*
 NUMBER        [0-9]+(\.[0-9]+)?
 STRING        \"([^\\\"]|\\.)*\"
@@ -13,7 +13,7 @@ LINE_COMMENT  //[^\n]*
 
 %%
 
-{KEYWORD_C}        { printf("C Keyword: %s\n", yytext); }
+{KEYWORD_CPP}      { printf("C++ Keyword: %s\n", yytext); }
 
 {IDENTIFIER}       { printf("Identifier: %s\n", yytext); }
 {NUMBER}           { printf("Number: %s\n", yytext); }
@@ -33,5 +33,4 @@ int main(int argc, char **argv) {
     yylex();
     return 0;
 }
-
 
