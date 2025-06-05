@@ -1,0 +1,18 @@
+@startuml
+hide empty description
+skinparam state {
+  BackgroundColor lightcoral
+  ArrowColor darkorange
+  BorderColor darkorange
+}
+
+state "D0_COMMENT (Start)" as D0_comment
+state "D1_open_brace" as D1_comment
+state "D2_content" as D2_comment
+state "D3_close_brace" as D3_comment <<end>>
+
+D0_comment --> D1_comment : {
+D1_comment --> D2_comment : Any char (not { or })
+D2_comment --> D2_comment : Any char (not { or })
+D2_comment --> D3_comment : }
+@enduml

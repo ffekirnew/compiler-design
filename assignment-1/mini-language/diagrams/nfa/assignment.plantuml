@@ -1,0 +1,15 @@
+@startuml
+hide empty description
+skinparam state {
+  BackgroundColor lightyellow
+  ArrowColor darkred
+  BorderColor darkred
+}
+
+state "S0" as S0_assign
+state "S1_colon" as S1_assign
+state "S2_equal" as S2_assign <<end>>
+
+S0_assign --> S1_assign : :
+S1_assign --> S2_assign : =
+@enduml

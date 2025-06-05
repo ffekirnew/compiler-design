@@ -1,0 +1,14 @@
+@startuml
+hide empty description
+skinparam state {
+  BackgroundColor lightblue
+  ArrowColor darkblue
+  BorderColor darkblue
+}
+
+state "S0_NUM" as S0_num
+state "S1_NUM_accept" as S1_num <<end>>
+
+S0_num --> S1_num : [0-9]
+S1_num --> S1_num : [0-9]
+@enduml

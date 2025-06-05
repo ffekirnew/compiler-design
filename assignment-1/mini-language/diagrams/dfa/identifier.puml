@@ -1,0 +1,14 @@
+@startuml
+hide empty description
+skinparam state {
+  BackgroundColor lightgreen
+  ArrowColor darkgreen
+  BorderColor darkgreen
+}
+
+state "D0_ID (Start)" as D0_id
+state "D1_ID_accept" as D1_id <<end>>
+
+D0_id --> D1_id : [a-zA-Z]
+D1_id --> D1_id : [a-zA-Z0-9]
+@enduml

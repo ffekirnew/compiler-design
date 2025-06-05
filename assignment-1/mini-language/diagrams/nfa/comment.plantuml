@@ -1,0 +1,18 @@
+@startuml
+hide empty description
+skinparam state {
+  BackgroundColor lightcoral
+  ArrowColor darkorange
+  BorderColor darkorange
+}
+
+state "S0" as S0_comment
+state "S1_open_brace" as S1_comment
+state "S2_content" as S2_comment
+state "S3_close_brace" as S3_comment <<end>>
+
+S0_comment --> S1_comment : {
+S1_comment --> S2_comment : Any char (not { or })
+S2_comment --> S2_comment : Any char (not { or })
+S2_comment --> S3_comment : }
+@enduml

@@ -1,27 +1,6 @@
 # Mini Language
 
-## Step 1: Regular Expressions
-- Integers: `0|([1-9][0-9]*)`
-- Identifiers: `[a-zA-Z_][a-zA-Z0-9_]*`
-- Assignment: `!=`
-- Control statements:
-    - `if`
-    - `then`
-    - `else`
-    - `end`
-    - `repeat`
-    - `until`
-- Arithmetic operators: `+`, `-`, `*`, `/`
-- Boolean operators: `=`, `<`
-- Other keywords:
-    - `read`
-    - `write`
-- Other symbols:
-    - `;`
-    - `{`
-    - `}`
-
-## Step 2: Identifying Tokens
+## Step 1: Regular Expressions & Tokens
 - Integers: `0|([1-9][0-9]*)`
 - Identifiers: `[a-zA-Z_][a-zA-Z0-9_]*`
 - Assignment: `!=`

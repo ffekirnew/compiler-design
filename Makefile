@@ -35,3 +35,12 @@ assignment_1_number_counter:
 
 assignment_1_vowel_counter:
 	@make process_folder FOLDER=./assignment-1/vowel_counter
+
+mini_language:
+	@make process LEX_FILE="./assignment-1/mini-language/lex.l" SOURCE_FILE="./assignment-1/mini-language/source.mini"
+
+lex_and_yacc:
+	@lex lex-and-yacc/yacc/word_recognizer.l
+	@byacc -d lex-and-yacc/yacc/sentence_parser.y
+	@gcc -c lex.yy.c y.tab.c
+	@gcc -o parser lex.yy.o y.tab.o -ll

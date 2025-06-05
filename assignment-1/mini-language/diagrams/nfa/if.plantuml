@@ -1,0 +1,15 @@
+@startuml
+hide empty description
+skinparam state {
+  BackgroundColor lightblue
+  ArrowColor darkblue
+  BorderColor darkblue
+}
+
+state "S0" as S0_if
+state "S1_i" as S1_if
+state "S2_f" as S2_if <<end>>
+
+S0_if --> S1_if : i
+S1_if --> S2_if : f
+@enduml

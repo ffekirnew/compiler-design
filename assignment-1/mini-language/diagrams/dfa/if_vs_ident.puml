@@ -1,0 +1,24 @@
+@startuml
+hide empty description
+skinparam state {
+  BackgroundColor lightgray
+  ArrowColor darkgray
+  BorderColor black
+}
+
+state "D0 (Start)" as D0
+state "D1 (after 'i')" as D1
+state "D2 (after 'if')" as D2 <<end>>
+state "D_ID_cont" as D_ID_cont <<end>>
+
+D0 --> D1 : i
+D1 --> D2 : f
+D1 --> D_ID_cont : [a-eg-z0-9] ' Any alphanumeric char except 'f'
+D2 --> D_ID_cont : [a-zA-Z0-9] ' Any alphanumeric char after 'if'
+
+D_ID_cont --> D_ID_cont : [a-zA-Z0-9] ' Continue matching ID
+
+' Label accepting states to indicate token type
+state_D2_accept_if : IF_TOKEN
+state_D_ID_cont_accept : ID
+@enduml
