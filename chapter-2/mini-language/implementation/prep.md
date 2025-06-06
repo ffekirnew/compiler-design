@@ -1,6 +1,6 @@
 # Mini Language
 
-## Step 1: Regular Expressions & Tokens
+## Regular Expressions & Tokens
 - Integers: `0|([1-9][0-9]*)`
 - Identifiers: `[a-zA-Z_][a-zA-Z0-9_]*`
 - Assignment: `!=`
