@@ -20,18 +20,27 @@
 
 #define YYPURE 0
 
-#line 2 "lex-and-yacc/yacc/sentence_parser.y"
-/*
- * A lexer for the basic grammar to use for recognizing English sentences.
- */
-#include <stdio.h>
-#line 29 "y.tab.c"
+#line 2 "mini.y"
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
 
-#if ! defined(YYSTYPE) && ! defined(YYSTYPE_IS_DECLARED)
-/* Default: YYSTYPE is the semantic value type. */
-typedef int YYSTYPE;
-# define YYSTYPE_IS_DECLARED 1
+    extern int yylex();
+    extern int yyerror(const char* s);
+    extern FILE *yyin;
+#ifdef YYSTYPE
+#undef  YYSTYPE_IS_DECLARED
+#define YYSTYPE_IS_DECLARED 1
 #endif
+#ifndef YYSTYPE_IS_DECLARED
+#define YYSTYPE_IS_DECLARED 1
+#line 11 "mini.y"
+typedef union YYSTYPE {
+    int ival;    /* For integer values (e.g., NUMBER)*/
+    char *sval;  /* For string values (e.g., ID)*/
+} YYSTYPE;
+#endif /* !YYSTYPE_IS_DECLARED */
+#line 44 "y.tab.c"
 
 /* compatibility with bison */
 #ifdef YYPARSE_PARAM
@@ -68,63 +77,97 @@ int YYLEX_DECL();
 
 extern int YYPARSE_DECL();
 
-#define NOUN 257
-#define PRONOUN 258
-#define VERB 259
-#define ADVERB 260
-#define ADJECTIVE 261
-#define PREPOSITION 262
-#define CONJUNCTION 263
+#define ID 257
+#define NUMBER 258
+#define IF 259
+#define THEN 260
+#define ELSE 261
+#define END 262
+#define REPEAT 263
+#define UNTIL 264
+#define READ 265
+#define WRITE 266
+#define LT 267
+#define EQ 268
+#define PLUS 269
+#define MINUS 270
+#define TIMES 271
+#define OVER 272
+#define ASSIGN 273
+#define SEMICOLON 274
+#define LPAREN 275
+#define RPAREN 276
 #define YYERRCODE 256
 typedef int YYINT;
 static const YYINT yylhs[] = {                           -1,
-    0,    0,    1,    1,    2,    2,    3,    3,    3,    4,
-    4,    4,    5,    5,    6,
+    0,    1,    3,    3,    2,    2,    2,    2,    2,    4,
+   10,   10,    5,    6,    7,    8,    9,   12,   12,   11,
+   11,   14,   14,   16,   16,   16,   13,   13,   15,   15,
 };
 static const YYINT yylen[] = {                            2,
-    1,    1,    3,    4,    3,    3,    1,    1,    2,    1,
-    2,    2,    1,    2,    2,
+    1,    2,    3,    0,    1,    1,    1,    1,    1,    6,
+    2,    0,    4,    3,    2,    2,    3,    1,    1,    3,
+    1,    3,    1,    3,    1,    1,    1,    1,    1,    1,
 };
 static const YYINT yydefred[] = {                         0,
-    7,    8,    0,    0,    0,    0,    0,    9,    0,    0,
-   10,    0,    0,    5,    6,   11,   13,   12,    0,    0,
-   14,    0,    4,   15,
+    0,    0,    0,    0,    0,    0,    1,    0,    5,    6,
+    7,    8,    9,    0,   26,   25,    0,    0,    0,    0,
+   23,    0,   15,    0,    0,    2,    0,    0,    0,   18,
+   19,   27,   28,    0,    0,   29,   30,    0,    0,    0,
+   24,    0,    0,    0,   22,   13,    3,    0,    0,   11,
+   10,
 };
 #if defined(YYDESTRUCT_CALL) || defined(YYSTYPE_TOSTRING)
 static const YYINT yystos[] = {                           0,
-  257,  258,  261,  265,  266,  267,  268,  268,  263,  263,
-  259,  260,  269,  266,  266,  259,  257,  259,  261,  270,
-  270,  262,  271,  257,
+  257,  259,  263,  265,  266,  278,  279,  280,  282,  283,
+  284,  285,  286,  273,  257,  258,  275,  287,  289,  292,
+  294,  279,  257,  289,  274,  281,  289,  289,  260,  267,
+  268,  269,  270,  290,  291,  271,  272,  293,  264,  280,
+  276,  279,  289,  292,  294,  287,  281,  261,  288,  279,
+  262,
 };
 #endif /* YYDESTRUCT_CALL || YYSTYPE_TOSTRING */
-static const YYINT yydgoto[] = {                          4,
-    5,    6,    7,   13,   20,   23,
+static const YYINT yydgoto[] = {                          6,
+    7,    8,   26,    9,   10,   11,   12,   13,   18,   49,
+   19,   34,   35,   20,   38,   21,
 };
-static const YYINT yysindex[] = {                      -255,
-    0,    0, -255,    0, -248, -247, -249,    0, -255, -255,
-    0, -251, -252,    0,    0,    0,    0,    0, -257, -245,
-    0, -243,    0,    0,
+static const YYINT yysindex[] = {                      -248,
+ -263, -255, -248, -238, -255,    0,    0, -253,    0,    0,
+    0,    0,    0, -255,    0,    0, -255, -233, -229, -266,
+    0, -242,    0, -245, -248,    0, -245, -262, -248,    0,
+    0,    0,    0, -255, -255,    0,    0, -255, -255, -253,
+    0, -232, -245, -266,    0,    0,    0, -248, -231,    0,
+    0,
 };
 static const YYINT yyrindex[] = {                         0,
-    0,    0,    0,    0,   18,   19,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,   37,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    1,
-    0,    0,    0,    0,
+    0,    0,    0,   28,    0,    0,   32,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,   37,
+    0, -228,   23,   12,    0,    0,    0,    0,    0,    0,
+    0,
 };
 #if YYBTYACC
 static const YYINT yycindex[] = {                         0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,
 };
 #endif
 static const YYINT yygindex[] = {                         0,
-    3,    0,   17,    0,    2,    0,
+   -3,    5,   -5,    0,    0,    0,    0,    0,    3,    0,
+   -1,    0,    0,    8,    0,   -2,
 };
-#define YYTABLESIZE 264
-static const YYINT yytable[] = {                         17,
-    3,    1,    2,   19,   17,    3,   18,   16,   19,   11,
-   12,   14,   15,   24,    9,   10,   22,    1,    2,    8,
-   21,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+#define YYTABLESIZE 306
+static const YYINT yytable[] = {                         22,
+   21,   15,   16,   24,   36,   37,   32,   33,    1,   14,
+    2,   20,   27,   41,    3,   28,    4,    5,   23,   17,
+   25,   39,   17,   32,   33,   42,   29,   16,   48,   40,
+   51,   14,   43,   12,   47,   45,    4,   30,   31,   32,
+   33,   46,   44,    0,   50,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -146,14 +189,18 @@ static const YYINT yytable[] = {                         17,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    3,
+   21,   21,   21,    0,   21,    0,    0,   21,   21,   21,
+   21,   20,   20,   20,   21,   20,   21,    0,   20,   20,
+   20,   20,   17,   17,   17,   20,   17,   20,   16,   16,
+    0,   16,   14,   14,    0,   14,   17,    4,    4,    0,
+    4,   16,    0,    0,    0,   14,
 };
-static const YYINT yycheck[] = {                        257,
-    0,  257,  258,  261,  257,  261,  259,  259,  261,  259,
-  260,    9,   10,  257,  263,  263,  262,    0,    0,    3,
-   19,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+static const YYINT yycheck[] = {                          3,
+    0,  257,  258,    5,  271,  272,  269,  270,  257,  273,
+  259,    0,   14,  276,  263,   17,  265,  266,  257,  275,
+  274,  264,    0,  269,  270,   29,  260,    0,  261,   25,
+  262,    0,   34,  262,   40,   38,    0,  267,  268,  269,
+  270,   39,   35,   -1,   48,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -175,9 +222,11 @@ static const YYINT yycheck[] = {                        257,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,  263,
+  260,  261,  262,   -1,  264,   -1,   -1,  267,  268,  269,
+  270,  260,  261,  262,  274,  264,  276,   -1,  267,  268,
+  269,  270,  260,  261,  262,  274,  264,  276,  261,  262,
+   -1,  264,  261,  262,   -1,  264,  274,  261,  262,   -1,
+  264,  274,   -1,   -1,   -1,  274,
 };
 #if YYBTYACC
 static const YYINT yyctable[] = {                        -1,
@@ -207,15 +256,19 @@ static const YYINT yyctable[] = {                        -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,
 };
 #endif
-#define YYFINAL 4
+#define YYFINAL 6
 #ifndef YYDEBUG
 #define YYDEBUG 0
 #endif
-#define YYMAXTOKEN 263
-#define YYUNDFTOKEN 272
+#define YYMAXTOKEN 276
+#define YYUNDFTOKEN 295
 #define YYTRANSLATE(a) ((a) > YYMAXTOKEN ? YYUNDFTOKEN : (a))
 #if YYDEBUG
 #ifndef NULL
@@ -239,27 +292,44 @@ NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,
 NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,
 NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,
 NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,
-NULL,"error","NOUN","PRONOUN","VERB","ADVERB","ADJECTIVE","PREPOSITION",
-"CONJUNCTION","$accept","sentence","simple_sentence","compound_sentence",
-"subject","verb","object","prep_phrase","illegal-symbol",
+NULL,"error","ID","NUMBER","IF","THEN","ELSE","END","REPEAT","UNTIL","READ",
+"WRITE","LT","EQ","PLUS","MINUS","TIMES","OVER","ASSIGN","SEMICOLON","LPAREN",
+"RPAREN","$accept","program","stmt_sequence","statement","stmt_tail","if_stmt",
+"repeat_stmt","assign_stmt","read_stmt","write_stmt","bool_exp","else_part",
+"expression","comp_op","add_op","term","mul_op","factor","illegal-symbol",
 };
 static const char *const yyrule[] = {
-"$accept : sentence",
-"sentence : simple_sentence",
-"sentence : compound_sentence",
-"simple_sentence : subject verb object",
-"simple_sentence : subject verb object prep_phrase",
-"compound_sentence : simple_sentence CONJUNCTION simple_sentence",
-"compound_sentence : compound_sentence CONJUNCTION simple_sentence",
-"subject : NOUN",
-"subject : PRONOUN",
-"subject : ADJECTIVE subject",
-"verb : VERB",
-"verb : ADVERB VERB",
-"verb : verb VERB",
-"object : NOUN",
-"object : ADJECTIVE object",
-"prep_phrase : PREPOSITION NOUN",
+"$accept : program",
+"program : stmt_sequence",
+"stmt_sequence : statement stmt_tail",
+"stmt_tail : SEMICOLON statement stmt_tail",
+"stmt_tail :",
+"statement : if_stmt",
+"statement : repeat_stmt",
+"statement : assign_stmt",
+"statement : read_stmt",
+"statement : write_stmt",
+"if_stmt : IF bool_exp THEN stmt_sequence else_part END",
+"else_part : ELSE stmt_sequence",
+"else_part :",
+"repeat_stmt : REPEAT stmt_sequence UNTIL bool_exp",
+"assign_stmt : ID ASSIGN expression",
+"read_stmt : READ ID",
+"write_stmt : WRITE expression",
+"bool_exp : expression comp_op expression",
+"comp_op : LT",
+"comp_op : EQ",
+"expression : expression add_op term",
+"expression : term",
+"term : term mul_op factor",
+"term : factor",
+"factor : LPAREN expression RPAREN",
+"factor : NUMBER",
+"factor : ID",
+"add_op : PLUS",
+"add_op : MINUS",
+"mul_op : TIMES",
+"mul_op : OVER",
 
 };
 #endif
@@ -391,26 +461,34 @@ static YYINT  *yylexp = NULL;
 
 static YYINT  *yylexemes = NULL;
 #endif /* YYBTYACC */
-#line 41 "lex-and-yacc/yacc/sentence_parser.y"
+#line 152 "mini.y"
 
-extern FILE *yyin;
+// Error handling function
+int yyerror(const char* s) {
+    fprintf(stderr, "Parsing error: %s\n", s);
+    return 0;
+}
 
-int main()
-{
-  do {
+int main(int argc, char **argv) {
+    if (argc > 1) {
+        if (!(yyin = fopen(argv[1], "r"))) {
+            perror(argv[1]);
+            return 1;
+        }
+    } else {
+        yyin = stdin;
+    }
+
+    printf("Starting parsing...\n");
     yyparse();
-  }
-  while (!feof(yyin));
+    printf("Parsing finished.\n");
 
-  return 0;
+    if (yyin != stdin) {
+        fclose(yyin);
+    }
+    return 0;
 }
-
-int yyerror(char *s)
-{
-  fprintf(stderr, "%s\n", s);
-  return 0;
-}
-#line 414 "y.tab.c"
+#line 492 "y.tab.c"
 
 /* For use in generated program */
 #define yydepth (int)(yystack.s_mark - yystack.s_base)
@@ -1081,16 +1159,156 @@ yyreduce:
     switch (yyn)
     {
 case 1:
-#line 11 "lex-and-yacc/yacc/sentence_parser.y"
-	{ printf("Parsed a simple sentence.\n"); }
-#line 1087 "y.tab.c"
+#line 30 "mini.y"
+	{ printf("Rule 1: program -> stmt_sequence\n"); }
+#line 1165 "y.tab.c"
 break;
 case 2:
-#line 12 "lex-and-yacc/yacc/sentence_parser.y"
-	{ printf("Parsed a compound sentence.\n"); }
-#line 1092 "y.tab.c"
+#line 35 "mini.y"
+	{ printf("Rule 2: stmt_sequence -> statement stmt_tail\n"); }
+#line 1170 "y.tab.c"
 break;
-#line 1094 "y.tab.c"
+case 3:
+#line 40 "mini.y"
+	{ printf("Rule 3: stmt_tail -> ; statement stmt_tail\n"); }
+#line 1175 "y.tab.c"
+break;
+case 4:
+#line 42 "mini.y"
+	{ printf("Rule 4: stmt_tail -> ε\n"); }
+#line 1180 "y.tab.c"
+break;
+case 5:
+#line 51 "mini.y"
+	{ printf("Rule 5: statement -> if_stmt\n"); }
+#line 1185 "y.tab.c"
+break;
+case 6:
+#line 53 "mini.y"
+	{ printf("Rule 6: statement -> repeat_stmt\n"); }
+#line 1190 "y.tab.c"
+break;
+case 7:
+#line 55 "mini.y"
+	{ printf("Rule 7: statement -> assign_stmt\n"); }
+#line 1195 "y.tab.c"
+break;
+case 8:
+#line 57 "mini.y"
+	{ printf("Rule 8: statement -> read_stmt\n"); }
+#line 1200 "y.tab.c"
+break;
+case 9:
+#line 59 "mini.y"
+	{ printf("Rule 9: statement -> write_stmt\n"); }
+#line 1205 "y.tab.c"
+break;
+case 10:
+#line 64 "mini.y"
+	{ printf("Rule 10: if_stmt -> if bool_exp then stmt_sequence else_part end\n"); }
+#line 1210 "y.tab.c"
+break;
+case 11:
+#line 70 "mini.y"
+	{ printf("Rule 11: else_part -> else stmt_sequence\n"); }
+#line 1215 "y.tab.c"
+break;
+case 12:
+#line 72 "mini.y"
+	{ printf("Rule 12: else_part -> ε\n"); }
+#line 1220 "y.tab.c"
+break;
+case 13:
+#line 77 "mini.y"
+	{ printf("Rule 13: repeat_stmt -> repeat stmt_sequence until bool_exp\n"); }
+#line 1225 "y.tab.c"
+break;
+case 14:
+#line 82 "mini.y"
+	{ printf("Rule 14: assign_stmt -> ID := expression\n"); }
+#line 1230 "y.tab.c"
+break;
+case 15:
+#line 87 "mini.y"
+	{ printf("Rule 15: read_stmt -> read ID\n"); }
+#line 1235 "y.tab.c"
+break;
+case 16:
+#line 92 "mini.y"
+	{ printf("Rule 16: write_stmt -> write expression\n"); }
+#line 1240 "y.tab.c"
+break;
+case 17:
+#line 97 "mini.y"
+	{ printf("Rule 17: bool_exp -> expression comp_op expression\n"); }
+#line 1245 "y.tab.c"
+break;
+case 18:
+#line 103 "mini.y"
+	{ printf("Rule 18: comp_op -> <\n"); }
+#line 1250 "y.tab.c"
+break;
+case 19:
+#line 105 "mini.y"
+	{ printf("Rule 19: comp_op -> =\n"); }
+#line 1255 "y.tab.c"
+break;
+case 20:
+#line 111 "mini.y"
+	{ printf("Rule 20: expression -> expression add_op term\n"); }
+#line 1260 "y.tab.c"
+break;
+case 21:
+#line 113 "mini.y"
+	{ printf("Rule 21: expression -> term\n"); }
+#line 1265 "y.tab.c"
+break;
+case 22:
+#line 119 "mini.y"
+	{ printf("Rule 22: term -> term mul_op factor\n"); }
+#line 1270 "y.tab.c"
+break;
+case 23:
+#line 121 "mini.y"
+	{ printf("Rule 23: term -> factor\n"); }
+#line 1275 "y.tab.c"
+break;
+case 24:
+#line 128 "mini.y"
+	{ printf("Rule 24: factor -> ( expression )\n"); }
+#line 1280 "y.tab.c"
+break;
+case 25:
+#line 130 "mini.y"
+	{ printf("Rule 25: factor -> NUMBER\n"); }
+#line 1285 "y.tab.c"
+break;
+case 26:
+#line 132 "mini.y"
+	{ printf("Rule 26: factor -> ID\n"); }
+#line 1290 "y.tab.c"
+break;
+case 27:
+#line 138 "mini.y"
+	{ printf("Rule 27: add_op -> +\n"); }
+#line 1295 "y.tab.c"
+break;
+case 28:
+#line 140 "mini.y"
+	{ printf("Rule 28: add_op -> -\n"); }
+#line 1300 "y.tab.c"
+break;
+case 29:
+#line 146 "mini.y"
+	{ printf("Rule 29: mul_op -> *\n"); }
+#line 1305 "y.tab.c"
+break;
+case 30:
+#line 148 "mini.y"
+	{ printf("Rule 30: mul_op -> /\n"); }
+#line 1310 "y.tab.c"
+break;
+#line 1312 "y.tab.c"
     default:
         break;
     }

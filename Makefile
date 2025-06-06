@@ -6,9 +6,9 @@ BUILD_DIR = build
 process: $(LEX_FILE) $(SOURCE_FILE)
 	@echo "Processing $(SOURCE_FILE) using $(LEX_FILE)"
 	@mkdir -p $(BUILD_DIR)
-	@lex $(LEX_FILE)
-	@$(CC) lex.yy.c $(CFLAGS) $(BUILD_DIR)/scanner $(LEX_FLAGS)
-	@./$(BUILD_DIR)/scanner < $(SOURCE_FILE)
+	lex $(LEX_FILE)
+	$(CC) lex.yy.c $(CFLAGS) $(BUILD_DIR)/scanner $(LEX_FLAGS)
+	./$(BUILD_DIR)/scanner < $(SOURCE_FILE)
 	@rm -rf $(BUILD_DIR)
 	@rm -f lex.yy.c
 
@@ -38,8 +38,6 @@ assignment_1_vowel_counter:
 
 mini_language:
 	@make process LEX_FILE="./assignment-1/mini-language/lex.l" SOURCE_FILE="./assignment-1/mini-language/source.mini"
-
-lex_and_yacc:
 	@lex lex-and-yacc/yacc/word_recognizer.l
 	@byacc -d lex-and-yacc/yacc/sentence_parser.y
 	@gcc -c lex.yy.c y.tab.c
